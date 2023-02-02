@@ -9,7 +9,7 @@
     3. 새로운 계정을 만드는 작업은 SYS, SYSTEM 계정에서 처리한다. 
     4. 새로운 계정을 만드는 방법 
         1) DROP USER 계정이름 CASECADE : 기존에 생성된 계정이 있다면 삭제하시오. CASCADE는 계정이 가진 데이터도 함께 삭제하라는 옵션이다. 
-        2) CREATE USER 계정이름 IDEMTIFIED BY 비밀번호 : 계정 만들기 
+        2) CREATE USER 계정이름 IDENTIFIED BY 비밀번호 : 계정 만들기 
         3) GRANT 권한 TO 계정이름 : 생성된 계정에 권한(CONNECT, RESOURCE, DBA)을 준다. 
 */
 
@@ -22,3 +22,11 @@
 DROP USER GDJ61 CASCADE;
 CREATE USER GDJ61 IDENTIFIED BY 1111;
 GRANT DBA TO GDJ61;
+
+
+DROP USER GDJ61 CASCADE; 
+CREATE USER GDJ61 IDENTIFIED BY 1111; 
+GRANT DBA TO GDJ61;
+
+
+DROP USER GDJ61 CASCADE; 
