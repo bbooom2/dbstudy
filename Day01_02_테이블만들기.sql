@@ -33,6 +33,12 @@
         UNIQUE 
     3. 값의 제한 
         CHECK 
+        
+    4. 개체무결성 (PK : PRIMARY KEY) 
+     NOT NULL + UNIQUE
+     중복된 값이 저장될 수 없고, NULL값이 저장될 수 없다. 
+     (*기본키가 없는 테이블이 규칙에 어긋나는  테이블은 아니다.) 
+     
 */
 
 
