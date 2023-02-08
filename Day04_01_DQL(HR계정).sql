@@ -1,0 +1,86 @@
+
+
+/*
+EMPLOYEES의 FIRST_NAME, LAST_NAME 근데 너무 기니까 별명을 붙여줘야함, 칼럼에도 별명을 줄 수 있음, 테이블은 AS(앨리어스) 안 됨
+SELECT E.FIRST_NAME FNAME, E.LAST_NAME LNAME으로도 사용할 수 있으나 수업에서는 AS 사용할 예정. JOIN가면 사용 할 예정 
+
+SELECT E.FIRST_NAME AS FNAME, E.LAST_NAME AS LNAME 
+FROM HR.EMPLOYEES E; --HR 계정이 가지고 있는 EMPLOYEES / E로 테이블 별명 지어 줌 
+*/
+
+
+
+-- 밑에 실행 시 순서 : FROM - WHERE - SELECT
+
+/*
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY AS SAL
+ FROM  EMPLOYEES
+ WHERE SAL BETWEEN 10000 AND 20000;
+ 
+ WHERE절 처리하기 전까지는 셀렉트 절이 안보인다고 보면 됨 (별명 설정해놓은 거 안 보인다는 것) 
+ 
+ SELECT EM1111PLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY 
+ FROM  EM1PLOYEES E
+ WHERE E.SALARY BETWEEN 10000 AND 20000;
+ 
+ 이거는 됨. FROM절이 가장 첫번째니까 별명 설정해놔도 무방. 
+ 
+*/
+
+-- 테이블의 구조 파악
+DESC EMPLOYEES; --DESCRIBE 최대 4글자까지 줄일 수 있음 (DESC) 
+
+
+-- 1. EMPLOYEES 테이블에서 FIRST_NAME, LAST_NAME 조회하기
+
+SELECT FIRST_NAME, LAST_NAME 
+  FROM HR.EMPLOYEES; 
+  
+-- 2. EMPLOYEES 테이블에서 DEPARTMENT_ID를 중복 제거하고 조회하기 
+SELECT DISTINCT DEPARTMENT_ID
+  FROM EMPLOYEES;
+  
+  
+-- 3. EMPLOYEES 테이블에서 EMPLOYEE_ID가 150인 사원 조회하기 
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME
+  FROM EMPLOYEES
+ WHERE EMPLOYEE_ID = 150; --WHERE절(조건)의 등호(=)는 비교 연산자이다. (같다, 다르다. 자바로 따지면 == 이것과 동일) 
+ 
+-- 4. EMPLOYEES 테이블에서 SALARY가 10000 ~ 20000 사이인 사원 조회하기 
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY 
+ FROM  EMPLOYEES
+ WHERE SALARY BETWEEN 10000 AND 20000;
+ 
+-- 5. EMPLOYEES 테이블에서 DEPARTMENT_ID가 30, 40, 50인 사원 조회하기 
+ SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, DEPARTMENT_ID
+   FROM EMPLOYEES
+  WHERE DEPARTMENT_ID IN(30, 40, 50); -- OR의 대체품은 IN
+  
+-- 6. EMPLOYEES 테이블에서 DEPARTMENT_ID가 NULL인 사원 조회하기 
+ SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, DEPARTMENT_ID
+   FROM EMPLOYEES
+   WHERE DEPARTMENT_ID IS NULL; --IS NOT NULL도 있음 
+   
+-- 7. EMPLOYEES 테이블에서 PHONE_NUMBER가 '515'로 시작하는 사원 조회하기  - VARCHAR2 타입임 
+ SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, PHONE_NUMBER
+   FROM EMPLOYEES
+  WHERE PHONE_NUMBER LIKE '515%'; 
+  --와일드 카드가 사용될 때는 등호(=)를 사용할 수 없다. LIKE 사용해야 함. PHONE_NUMBER NOT LIKE '515%'는 515로 시작하지 않는 번호가 조회 됨.
+  --515_ 이 와일드 카드는 뒤에 한 글자만 들어올 수 있는 것이다. 515로 시작하는 뒤에 한글자 더해진 결과값 나옴. EX 5152 __이어서도 사용한다고는 함. 
+  
+-- 8. EMPLOYEES 테이블을 FIRST_NAME의 가나다순(오름차순 : Ascending Sort)으로 정렬해서 조회하기 
+ SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, DEPARTMENT_ID
+   FROM EMPLOYEES
+  ORDER BY FIRST_NAME ASC; -- ASC : 오름차순 (생략가능) // DESC : 내림차순
+  
+-- 9. EMPLOYEES 테이블을 높은 SALARY(내림차순 : Descending Sort)를 받는 사원을 먼저 조회하기
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY
+   FROM EMPLOYEES
+  ORDER BY SALARY DESC; -- DESC는 생략이 불가능하다. ("반드시" 적어야 함) 
+  
+-- 10. EMPLOYEES 테이블의 사원들을 DEPARTMENT_ID 순으로 조회하고, 동일한 DEPARTMENT_ID를 가진 사원들은 높은 SALARY 순으로 조회하시오. 
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, DEPARTMENT_ID, SALARY -- 여기선 ORDER BY가 마지막으로 해석되기 때문에 AS SAL 별칭 써줘도 무방함. 
+   FROM EMPLOYEES
+  ORDER BY DEPARTMENT_ID ASC, SALARY DESC;
+  
+
