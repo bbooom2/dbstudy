@@ -51,11 +51,10 @@ ALTER TABLE EMPLOYEE_TBL
             ON DELETE SET NULL;
             
 -- 시퀀스(번호 생성기) 삭제하기 
---DROP SEQUENCE DEPARTMENT_SEQ;
+DROP SEQUENCE DEPARTMENT_SEQ;
 DROP SEQUENCE EMPLOYEE_SEQ;
             
 -- 시퀀스(번호 생성기) 만들기 
-/*
 CREATE SEQUENCE DEPARTMENT_SEQ --이름은 임의로 지으면 됨. 
     INCREMENT BY 1 -- 1씩 증가하는 번호를 만든다.(생략 가능) 
     START WITH 1 -- 1부터 번호를 만든다. (생략 가능) 
@@ -65,10 +64,10 @@ CREATE SEQUENCE DEPARTMENT_SEQ --이름은 임의로 지으면 됨.
     NOCACHE -- 메모리 캐시를 사용하지 않는다.        CACHE : 메모리 캐시를 사용한다. (사용하지 않는 것이 좋다.) 매번 손으로 지정할 예정. 
     ORDER   -- 번호 건너뛰기가 없다.                 NORDER : 번호 건너뛰기가 가능하다. 
 ;
-*/
 
+--시퀀스 만들기 
 CREATE SEQUENCE EMPLOYEE_SEQ --이름은 임의로 지으면 됨. 
-    INCREMENT BY 1 -- 1씩 증가하는 번호를 만든다.(생략 가능) 
+--  INCREMENT BY 1 -- 1씩 증가하는 번호를 만든다.(생략 가능) 
     START WITH 1001
     NOCACHE;
 
@@ -80,13 +79,20 @@ CREATE SEQUENCE EMPLOYEE_SEQ --이름은 임의로 지으면 됨.
 -- 데이터 입력하기 (PARENT KEY를 먼저 입력해야 한다.)   
 --INSERT INTO DEPARTMENT_TBL VALUES(1, '영업부', '대구');
 --INSERT INTO DEPARTMENT_TBL(DEPT_NAME, LOCATION) VALUES('총무부', '대구'); --순서대로 입력
-/*
-INSERT INTO DEPARTMENT_TBL(DEPT_NO, NAME, LOCATION) VALUES(DEPARTMENT_SEQ.NEXTVAL, '영업부', '대구'); --1 우리는 수업 때 이 방법으로 진행할 것. 
+
+INSERT INTO DEPARTMENT_TBL(DEPT_NO, DEPT_NAME, LOCATION) VALUES(DEPARTMENT_SEQ.NEXTVAL, '영업부', '대구'); --1 우리는 수업 때 이 방법으로 진행할 것. 
 INSERT INTO DEPARTMENT_TBL(DEPT_NO, DEPT_NAME, LOCATION) VALUES(DEPARTMENT_SEQ.NEXTVAL, '인사부', '서울'); --2
 INSERT INTO DEPARTMENT_TBL(DEPT_NO, DEPT_NAME, LOCATION) VALUES(DEPARTMENT_SEQ.NEXTVAL,  '총무부', '대구');--3
 INSERT INTO DEPARTMENT_TBL(DEPT_NO, DEPT_NAME, LOCATION) VALUES(DEPARTMENT_SEQ.NEXTVAL,  '기획부', '서울');--4
 COMMIT;
-*/
+
+-- 시퀀스 삭제하기
+DROP SEQUENCE EMPLOYEE_SEQ;
+
+-- 시퀀스 만들기
+CREATE SEQUENCE EMPLOYEE_SEQ
+    START WITH 1001
+    NOCACHE;
 
 
 INSERT INTO EMPLOYEE_TBL VALUES(EMPLOYEE_SEQ.NEXTVAL, '구창민', 1, '과장', 'M', '95-05-01', 5000000);
