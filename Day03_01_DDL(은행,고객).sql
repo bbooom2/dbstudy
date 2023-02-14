@@ -50,8 +50,7 @@ CREATE TABLE CUSTOMER_TBL ( --완성된 걸 수정하려고 한다면 ALTER 써�
 -- 1. BANK_TBL 테이블에 연락처(BANK_TEL) 칼럼을 추가하시오.
 ALTER TABLE BANK_TBL 
     ADD BANK_TEL VARCHAR2(20 BYTE) NOT NULL; --줄바꿈 한 번 해주면 깔끔 
-    
-    
+
  -- 2. CUSTOMER_TBL 테이블에서 나이(AGE) 칼럼을 삭제하시오. 
  ALTER TABLE CUSTOMER_TBL
     DROP COLUMN AGE;
@@ -59,12 +58,11 @@ ALTER TABLE BANK_TBL
  -- 3. BANK_TBL 테이블의 은행명(BANK_NAME) 칼럼의 데이터타입을 VARCHAR2(15 BYTE)으로 변경하시오. 
  ALTER TABLE BANK_TBL 
     MODIFY BANK_NAME VARCHAR2(15 BYTE);
-    
 
 -- 4. CUSTOMER_TBL 테이블에서 고객명(NAME) 칼럼의 이름을 CUST_NAME으로 변경하시오.
 ALTER TABLE CUSTOMER_TBL
     RENAME COLUMN NAME TO CUST_NAME;
-    
+
 -- 개인실습. 
 
 -- 5. CUSTOMER_TBL 테이블에 GRADE 칼럼을 추가하시오 
@@ -72,7 +70,7 @@ ALTER TABLE CUSTOMER_TBL
 
 ALTER TABLE CUSTOMER_TBL
     ADD GRADE VARCHAR2(6 BYTE) CHECK (GRADE IN('VIP','GOLD','SILVER','BRONZE'));
-    
+
     
 -- 6. BANK_TBL 테이블의 BANK_NAME 칼럼에 NOT NULL 제약조건을 추가하시오. //데이터타입 수정 안 하더라도 데이터타입 기재해야함. 우리는 한번 수정했으니까 수정한 데이터타입 기재 
                                                                          --추가하시오라고 문제에서 제시하더라도 칼럼명을 추가하는 게 아니니까 MODIFY가 맞음 
