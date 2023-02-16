@@ -18,21 +18,20 @@ CREATE TABLE MEMBER_TBL(
 );
 
 
-
 -- 2. MEMBER_TBL 테이블에 다음 새로운 칼럼을 추가하시오.
 --    1) 회원주소: ADDRESS VARCHAR2(200 BYTE)
 --    2) 회원가입일: REGIST_DATE DATE
+
 ALTER TABLE MEMBER_TBL 
     ADD ADDRESS VARCHAR2(200 BYTE);
 ALTER TABLE MEMBER_TBL 
     ADD REGIST_DATE DATE;
-
+    
 -- 3. 추가된 회원주소 칼럼을 다시 삭제하시오.
-ALTER TABLE  MEMBER_TBL
+ALTER TABLE MEMBER_TBL
    DROP COLUMN ADDRESS;
-
+   
 -- 4. 회원등급 칼럼의 타입을 VARCHAR2(20 BYTE)으로 수정하시오.
-
 ALTER TABLE MEMBER_TBL
     MODIFY GRADE VARCHAR2(20 BYTE);
 
@@ -43,6 +42,7 @@ ALTER TABLE MEMBER_TBL
 -- 6. 회원번호 칼럼에 기본키(PK_MEMBER)를 설정하시오.
 ALTER TABLE MEMBER_TBL 
     ADD CONSTRAINT PK_MEMBER PRIMARY KEY(MEMBER_NO);
+
 
 -- 7. 다음 칼럼 정보를 이용하여 BOARD_TBL 테이블을 생성하시오.
 --    1) 글번호: BOARD_NO, NUMBER, 필수
@@ -67,11 +67,11 @@ CREATE TABLE BOARD_TBL(
 -- 8. 조회수 칼럼의 타입을 NUMBER로 수정하시오.
 ALTER TABLE BOARD_TBL 
     MODIFY HIT NUMBER;
-
-
+    
 -- 9. 글내용 칼럼의 필수 제약조건을 제거하시오.
 ALTER TABLE BOARD_TBL
-    MODIFY CONTENT VARCHAR2(4000 BYTE) NULL;
+    MODIFY CONTENT VARCHAR2(4000 BYTE) NULL; --낫널이 필수제약조건이라 제거할 수 없어서 널로 다시 만든거 
+
 
 -- 10. 글번호 칼럼에 기본키(PK_BOARD)를 설정하시오.
 ALTER TABLE BOARD_TBL 

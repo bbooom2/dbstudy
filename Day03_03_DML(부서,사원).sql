@@ -53,6 +53,7 @@ ALTER TABLE EMPLOYEE_TBL
 -- 시퀀스(번호 생성기) 삭제하기 
 DROP SEQUENCE DEPARTMENT_SEQ;
 DROP SEQUENCE EMPLOYEE_SEQ;
+
             
 -- 시퀀스(번호 생성기) 만들기 
 CREATE SEQUENCE DEPARTMENT_SEQ --이름은 임의로 지으면 됨. 
@@ -66,8 +67,7 @@ CREATE SEQUENCE DEPARTMENT_SEQ --이름은 임의로 지으면 됨.
 ;
 
 --시퀀스 만들기 
-CREATE SEQUENCE EMPLOYEE_SEQ --이름은 임의로 지으면 됨. 
---  INCREMENT BY 1 -- 1씩 증가하는 번호를 만든다.(생략 가능) 
+CREATE SEQUENCE EMPLOYEE_SEQ 
     START WITH 1001
     NOCACHE;
 
@@ -75,8 +75,9 @@ CREATE SEQUENCE EMPLOYEE_SEQ --이름은 임의로 지으면 됨.
 -- 시퀀스에서 번호 뽑는 함수 : NEXTVAL  
 --SELECT DEPARTMENT_SEQ.NEXTVAL FROM DUAL; -- 오라클에서는 테이블에 없는 데이터를 조회하려면 DUAL 테이블을 사용한다. 오라클은 FROM절까지 필수// DEPARTMENT_SEQ.NEXTVAL 조회할 내용.
                                            -- 확인 끝나서 주석처리  
-    
+
 -- 데이터 입력하기 (PARENT KEY를 먼저 입력해야 한다.)   
+--참조키에서 참조하는 기본키는 부모키(parent key)라고도 합니다. 부모키가 있는 테이블을 부모 테이블(parent table)이라고 합니다.
 --INSERT INTO DEPARTMENT_TBL VALUES(1, '영업부', '대구');
 --INSERT INTO DEPARTMENT_TBL(DEPT_NAME, LOCATION) VALUES('총무부', '대구'); --순서대로 입력
 
@@ -85,6 +86,7 @@ INSERT INTO DEPARTMENT_TBL(DEPT_NO, DEPT_NAME, LOCATION) VALUES(DEPARTMENT_SEQ.N
 INSERT INTO DEPARTMENT_TBL(DEPT_NO, DEPT_NAME, LOCATION) VALUES(DEPARTMENT_SEQ.NEXTVAL,  '총무부', '대구');--3
 INSERT INTO DEPARTMENT_TBL(DEPT_NO, DEPT_NAME, LOCATION) VALUES(DEPARTMENT_SEQ.NEXTVAL,  '기획부', '서울');--4
 COMMIT;
+
 
 -- 시퀀스 삭제하기
 DROP SEQUENCE EMPLOYEE_SEQ;
@@ -105,9 +107,10 @@ COMMIT;
 -- 데이터 수정하기 
 -- 1. 부서번호(DEPT_NO)가 1인 부서의 지역(LOCATION)을 '경기'로 수정하시오. 
 UPDATE DEPARTMENT_TBL 
-   SET LOCATION = '경기' -- 수정할 내용(여기서 등호는 대입 연산자이다.)
+SET LOCATION = '경기' -- 수정할 내용(여기서 등호는 대입 연산자이다.)
  WHERE DEPT_NO = 1;      -- 조건문(여기서 등호는 비교 연산자이다.)
 COMMIT;
+
 
 -- 2. 부서번호(DEPART)가 1인 부서에 근무하는 사원들의 급여(SALARY)를 500000원 증가시키시오.
 UPDATE EMPLOYEE_TBL
@@ -119,6 +122,9 @@ COMMIT;
 -- 1. 지역(LOCATION)이 '대구'인 부서를 삭제하시오. ('대구'에서 근무하는 사원이 없으므로 문제 없이 삭제된다.) 
 DELETE FROM DEPARTMENT_TBL WHERE LOCATION = '대구';
 COMMIT;
+
+DELETE FROM DEPARTMENT_TBL WHERE LOCATION - 
+
 
 -- 2. 지역(LOCATION)이 '서울'인 부서를 삭제하시오. (부서번호(DEPART)가 ON DELETE SET NULL 외래키 옵션에 의해서 NULL로 처리된다. 
 DELETE FROM DEPARTMENT_TBL WHERE LOCATION = '서울';
