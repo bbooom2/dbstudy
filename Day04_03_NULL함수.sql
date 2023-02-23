@@ -21,15 +21,15 @@ SELECT NAME, KOR + ENG + MAT AS TOTAL
   
 -- 1. NVL(칼럼, NULL 대신 사용할 값) 
 SELECT 
-        NVL(NAME, '아무개') AS 이름  -- 이름에 NULL이 들어가면 '아무개'로 대체 
-       ,NVL(KOR, 0) + NVL(ENG, 0) +NVL(MAT, 0) AS 총점 -- 점수에 NULL이 들어가면 0으로 대체  
+      NVL(NAME, '아무개') AS 이름                    -- 이름에 NULL이 들어가면 '아무개'로 대체 
+     ,NVL(KOR, 0) + NVL(ENG, 0) +NVL(MAT, 0) AS 총점 -- 점수에 NULL이 들어가면 0으로 대체  
    FROM 
-        SAMPLE_TBL;
+      SAMPLE_TBL;
         
 
 -- 2. NVL2(칼럼, NULL이 아닐 때 사용할 값, NULL일 때 사용할 값)
 SELECT 
-        NVL2(KOR + ENG + MAT, '응시', '결시')
+      NVL2(KOR + ENG + MAT, '응시', '결시')
   FROM
-        SAMPLE_TBL;
+      SAMPLE_TBL;
        

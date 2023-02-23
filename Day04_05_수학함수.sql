@@ -17,7 +17,7 @@ SELECT MOD(7, 3)
   FROM DUAL;
   
 -- 4. 부호 판별 
--- SIGN(A) : A가 양수이면 1, A가 음수이면 -1, ARK 0이면 0을 반환 
+-- SIGN(A) : A가 양수이면 1, A가 음수이면 -1, A가 0이면 0을 반환 
 SELECT 
        SIGN(5)
       ,SIGN(-5)
@@ -35,7 +35,7 @@ SELECT
        CEIL(1.1)  --올려주면 2 
       ,CEIL(-1.1) --올려주면 -1
   FROM 
-        DUAL;
+       DUAL;
 
 -- 7. 정수로 내림 
 -- FLOOR(A) : 실수 A를 정수로 내린 값을 반환 
@@ -58,7 +58,7 @@ SELECT
      DUAL;     
      
 -- 9. 원하는 자릿수로 절사 **공부하세요** 
---    TRUNC(A,[DIGIT]) : 실수 A를 DIGIT 자릿수로 절사 값을 반환 -- 이때 DIGIT을 생략하면 
+--    TRUNC(A,[DIGIT]) : 실수 A를 DIGIT 자릿수로 절사 값을 반환 -- DIGIT을 생략하면 정수로 절사한 값을 반환
 SELECT 
        TRUNC(123.456)     -- 정수로 절사
       ,TRUNC(123.456, 1)  -- 소수 1자리 남기고 절사 

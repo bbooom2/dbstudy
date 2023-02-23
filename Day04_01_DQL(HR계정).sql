@@ -1,8 +1,7 @@
 
 
 /*
-EMPLOYEES의 FIRST_NAME, LAST_NAME 근데 너무 기니까 별명을 붙여줘야함, 칼럼에도 별명을 줄 수 있음, 테이블은 AS(앨리어스) 안 됨
-SELECT E.FIRST_NAME FNAME, E.LAST_NAME LNAME으로도 사용할 수 있으나 수업에서는 AS 사용할 예정. JOIN가면 사용 할 예정 
+EMPLOYEES의 FIRST_NAME, LAST_NAME 은 이름이 길다보니 별명을 붙여주는 게 편함. *칼럼은 별명을 줄 수 있으나 테이블은 AS(앨리어스) 안 됨*
 
 SELECT E.FIRST_NAME AS FNAME, E.LAST_NAME AS LNAME 
 FROM HR.EMPLOYEES E; --HR 계정이 가지고 있는 EMPLOYEES / E로 테이블 별명 지어 줌 
@@ -14,13 +13,13 @@ FROM HR.EMPLOYEES E; --HR 계정이 가지고 있는 EMPLOYEES / E로 테이블 
 
 /*
 SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY AS SAL
- FROM  EMPLOYEES
+  FROM EMPLOYEES
  WHERE SAL BETWEEN 10000 AND 20000;
  
  WHERE절 처리하기 전까지는 셀렉트 절이 안보인다고 보면 됨 (별명 설정해놓은 거 안 보인다는 것) 
  
  SELECT EM1111PLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY 
- FROM  EM1PLOYEES E
+ FROM  EMPLOYEES E
  WHERE E.SALARY BETWEEN 10000 AND 20000;
  
  이거는 됨. FROM절이 가장 첫번째니까 별명 설정해놔도 무방. 

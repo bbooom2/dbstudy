@@ -9,9 +9,9 @@ DROP TABLE PROFESSOR_TBL;
 
 -- 1. PROFESSOR_TBL 테이블
 CREATE TABLE PROFESSOR_TBL (
-    P_NO    NUMBER            NOT NULL,  -- 기본키
-    P_NAME  VARCHAR2(30 BYTE) NULL,
-    P_MAJOR VARCHAR2(30 BYTE) NULL
+    P_NO    NUMBER NOT NULL,  -- 기본키
+    P_NAME  VARCHAR2(30 BYTE),
+    P_MAJOR VARCHAR2(30 BYTE) 
 );
 -- 기본키
 ALTER TABLE PROFESSOR_TBL
@@ -20,9 +20,9 @@ ALTER TABLE PROFESSOR_TBL
 
 -- 2. COURSE_TBL 테이블
 CREATE TABLE COURSE_TBL (
-    C_NO   NUMBER            NOT NULL,  -- 기본키
-    C_NAME VARCHAR2(30 BYTE) NULL,
-    C_UNIT NUMBER(1)         NULL
+    C_NO   NUMBER NOT NULL,  -- 기본키
+    C_NAME VARCHAR2(30 BYTE),
+    C_UNIT NUMBER(1)
 );
 -- 기본키
 ALTER TABLE COURSE_TBL
@@ -31,11 +31,11 @@ ALTER TABLE COURSE_TBL
 
 -- 3. STUDENT_TBL 테이블
 CREATE TABLE STUDENT_TBL (
-    S_NO       NUMBER             NOT NULL,  -- 기본키
-    S_NAME     VARCHAR2(30 BYTE)  NULL,
-    S_ADDRESS  VARCHAR2(100 BYTE) NULL,
-    S_GRADE_NO NUMBER(1)          NULL,
-    P_NO       NUMBER             NOT NULL  -- PROFESSOR_TBL 테이블의 P_NO칼럼을 참조하는 외래키
+    S_NO       NUMBER NOT NULL,  -- 기본키
+    S_NAME     VARCHAR2(30 BYTE),
+    S_ADDRESS  VARCHAR2(100 BYTE),
+    S_GRADE_NO NUMBER(1),
+    P_NO       NUMBER NOT NULL  -- PROFESSOR_TBL 테이블의 P_NO칼럼을 참조하는 외래키
 );
 -- 기본키
 ALTER TABLE STUDENT_TBL
@@ -51,7 +51,7 @@ CREATE TABLE ENROLL_TBL (
     E_NO   NUMBER NOT NULL,
     S_NO   NUMBER NOT NULL,  -- STUDENT 테이블의 S_NO 칼럼을 참조하는 외래키
     C_NO   NUMBER NOT NULL,  -- COURSE  테이블의 C_NO 칼럼을 참조하는 외래키
-    E_DATE DATE   NULL
+    E_DATE DATE
 );
 -- 기본키
 ALTER TABLE ENROLL_TBL
@@ -67,10 +67,10 @@ ALTER TABLE ENROLL_TBL
 
 -- 5. LECTURE_TBL 테이블
 CREATE TABLE LECTURE_TBL (
-    L_NO       NUMBER            NOT NULL,  -- 기본키
-    P_NO       NUMBER            NOT NULL,  -- PROFESSOR 테이블의 P_NO 칼럼을 참조하는 외래키
-    E_NO       NUMBER            NOT NULL,  -- ENROLL 테이블의 E_NO 칼럼을 참조하는 외래키
-    L_NAME     VARCHAR2(30 BYTE) NULL,
+    L_NO NUMBER NOT NULL,  -- 기본키
+    P_NO NUMBER NOT NULL,  -- PROFESSOR 테이블의 P_NO 칼럼을 참조하는 외래키
+    E_NO NUMBER NOT NULL,  -- ENROLL 테이블의 E_NO 칼럼을 참조하는 외래키
+    L_NAME VARCHAR2(30 BYTE) NULL,
     L_LOCATION VARCHAR2(30 BYTE) NULL
 );
 -- 기본키

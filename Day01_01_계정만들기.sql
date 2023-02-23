@@ -12,6 +12,8 @@
         -CASCADE는 계정이 가진 데이터(테이블)도 함께 삭제하라는 옵션이다. 
         2) CREATE USER 계정이름 IDENTIFIED BY 비밀번호 : 계정 만들기 
         3) GRANT 권한 TO 계정이름 : 생성된 계정에 권한(CONNECT, RESOURCE, DBA)을 준다. 
+        
+        (+) 삭제하려는 계정에 접속되어있지 않아야 한다. 
 */
 
 /*

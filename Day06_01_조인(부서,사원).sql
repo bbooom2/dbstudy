@@ -18,8 +18,9 @@
 
 -- 1) 표준 문법 
 SELECT E.EMP_NO, E.NAME, D.DEPT_NO, D.DEPT_NAME
-  FROM DEPARTMENT_TBL D INNER JOIN EMPLOYEE_TBL E    --PK를 가진 테이블을 앞에 적는다. (성능 때문)  -DEPARTMENT_TBL : 드라이빙 테이블 (주가되는 테이블)  -EMPLOYEE_TBL : 드리븐 테이블?(운전당하는테이블) 뒤에 따라가는 테이블 
+  FROM DEPARTMENT_TBL D INNER JOIN EMPLOYEE_TBL E    --PK를 가진 테이블을 앞에 적는다. (성능 때문)  -DEPARTMENT_TBL : 드라이빙 테이블 (주가되는 테이블)  -EMPLOYEE_TBL : 드리븐 테이블(운전당하는테이블), 뒤에 따라가는 테이블 
     ON D.DEPT_NO = E.DEPART;
+
 
 -- 2) 오라클 문법     
 SELECT E.EMP_NO, E.NAME, D.DEPT_NO, D.DEPT_NAME
@@ -37,11 +38,13 @@ SELECT D.DEPT_NO, D.DEPT_NAME, E.EMP_NO, E.NAME
 SELECT D.DEPT_NO, D.DEPT_NAME, E.EMP_NO, E.NAME
   FROM DEPARTMENT_TBL D, EMPLOYEE_TBL E
   WHERE D.DEPT_NO = E.DEPART(+);
+
   
 -- 외래키 제약 조건의 비활성화(일시 중지) 
 -- 제약조건이름 : FK_EMP_DEPT
 ALTER TABLE EMPLOYEE_TBL
     DISABLE CONSTRAINT FK_EMP_DEPT;
+
     
 -- 외래키 제약조건이 없는 상태이므로, 제약조건을 위배하는 데이터를 입력할 수 있다. 
 INSERT INTO EMPLOYEE_TBL(EMP_NO, NAME, DEPART, POSITION, GENDER, HIRE_DATE, SALARY)
@@ -61,7 +64,7 @@ WHERE D.DEPT_NO (+) = E.DEPART;  --반대편에 (+) 오른쪽외부조인이면 
 
 -- 외래키 제약조건을 위반하는 데이터 삭제하기 
                                                   -- PK를 조건으로 사용하면 인덱스를 타기 때문에 빠르다. 
-DELETE FROM EMPLOYEE_TBL WHERE EMP_NO = 1005;     -- 둘 다 쓸 수 있지만 EMP_NO는 PK PK는 인덱스 활용 가능 EMP_NO는 1005번이라는 데이터가 실제로 어디 저장되어있는지 DB가 알고 있다 
+DELETE FROM EMPLOYEE_TBL WHERE EMP_NO = 1005;     -- 둘 다 쓸 수 있지만 EMP_NO는 PK, PK는 인덱스 활용 가능. EMP_NO는 1005번이라는 데이터가 실제로 어디 저장되어있는지 DB가 알고 있다 
                                                   -- 밑에 NAME는 어디 저장된지 몰라서 풀스캔 하게 됨 나올 때 까지. 서울에서 김서방 찾기. 
 DELETE FROM EMPLOYEE_TBL WHERE NAME = '김성실';   -- 인덱스를 타지 않는 일반 칼럼은 느리게 동작한다.  
 COMMIT;

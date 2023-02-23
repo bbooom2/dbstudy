@@ -2,7 +2,7 @@
 
 
 -- 1. 대소문자 변환 함수 
-SELECT 
+SELECT                                               
      UPPER(EMAIL) -- 대문자
     ,LOWER(EMAIL) -- 소문자 
     ,INITCAP(EMAIL) --첫글자만 대문자, 나머지 글자 소문자 변환 

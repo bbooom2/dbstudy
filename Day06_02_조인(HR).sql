@@ -75,30 +75,32 @@ SELECT E.EMPLOYEE_ID, E.FIRST_NAME, D.DEPARTMENT_NAME -- 조회하고자 하는 
   FROM DEPARTMENTS D INNER JOIN EMPLOYEES E           -- 디파트먼트 테이블이 드라이브 테이블 
   ON D.DEPARTMENT_ID = E.DEPARTMENT_ID                -- 표준문법에서 조인조건은 ON. PK먼저 진행 
  WHERE D.LOCATION_ID = 1700;                          -- 일반조건은 WHERE에서 진행 '1700'으로 하더라도 자동으로 바꿔줌.   
+ 
+
 -- 2) 오라클 문법 
 SELECT E.EMPLOYEE_ID, E.FIRST_NAME, D.DEPARTMENT_NAME
   FROM DEPARTMENTS D, EMPLOYEES E
   WHERE D.DEPARTMENT_ID = E.DEPARTMENT_ID
-    AND D.LOCATION_ID = 1700;                                --조건이 두개일때는 AND인지 OR인지 파악만 하면 됨 
+    AND D.LOCATION_ID = 1700;                        -- 조건이 두 개일때는 AND인지 OR인지 파악만 하면 됨 
 
 -- 2. DEPARTMENT_NAME이 'Executive'인 부서에 근무하는 사원들의 EMPLOYEE_ID, FIRST_NAME을 조회하시오. 
--- 1) 표준 문법 : ON에 있는 같은것에 대한 것 말고는 각 앞에 있는 별칭들 빼줘도 무방함. 
+-- 1) 표준 문법 : ON에 있는 같은 것에 대한 것 말고는 각 앞에 있는 별칭들 빼줘도 무방함. 
 SELECT E.EMPLOYEE_ID, E.FIRST_NAME
 FROM DEPARTMENTS D INNER JOIN EMPLOYEES E
 ON D.DEPARTMENT_ID = E.DEPARTMENT_ID
 WHERE D.DEPARTMENT_NAME = 'Executive';
 
 --2) 오라클 
-
 SELECT E.EMPLOYEE_ID, E.FIRST_NAME
 FROM   DEPARTMENTS D, EMPLOYEES E 
 WHERE  D.DEPARTMENT_ID = E.DEPARTMENT_ID
   AND  D.DEPARTMENT_NAME = 'Executive';
+  
 -- 3. 모든 사원들의 EMPLOYEE_ID, FIRST_NAME, DEPARTMENT_NAME, CITY를 조회하시오. 
 --1) 표준 문법 
 SELECT E.EMPLOYEE_ID, E.FIRST_NAME, D.DEPARTMENT_NAME, L.CITY
 FROM LOCATIONS L INNER JOIN DEPARTMENTS D 
- ON L.LOCATION_ID = D.LOCATION_ID INNER JOIN EMPLOYEES E---여기까지 L,D 합친 테이블 이제 INNER JOIN EMPLOYEES E 할 것 
+ ON L.LOCATION_ID = D.LOCATION_ID INNER JOIN EMPLOYEES E --여기까지 L,D 합친 테이블 이제 INNER JOIN EMPLOYEES E 할 것 
  ON D.DEPARTMENT_ID = E.DEPARTMENT_ID;
  
 -- 2) 오라클 문법 

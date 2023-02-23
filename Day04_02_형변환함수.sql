@@ -30,7 +30,7 @@ SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME
 SELECT
         TO_CHAR(100)             -- '100'
       , TO_CHAR(100, '999999')   -- '   100' (9는 공백을 채우고) 
-      , TO_CHAR(100, '000000')   --'00100'   (0은 0을 채움) 
+      , TO_CHAR(100, '000000')   --'000100'   (0은 0을 채움) 
       , TO_CHAR(100, '9,999')    --'1,234'
       , TO_CHAR(12345, '9,999')  -- ###### (5자리 12345를 4자리 형식 9,999에 맞출 수 없다.)
       , TO_CHAR(12345, '99,999') --'12,345'
@@ -73,7 +73,7 @@ SELECT
 SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, HIRE_DATE
   FROM EMPLOYEES
  WHERE TO_DATE(HIRE_DATE, 'YY/MM/DD') BETWEEN TO_DATE('00/01/01', 'YY/MM/DD') AND TO_DATE ('05/12/31', 'YY/MM/DD');
- 
+
  
 -- 날짜 비교는 TO_DATE 함수를 이용하자!
 DROP TABLE SAMPLE_TBL; 
